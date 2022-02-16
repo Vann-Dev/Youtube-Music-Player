@@ -7,20 +7,13 @@ import Search from '../components/searchNav';
 import MusicManager, { getCurrentQueue, getCurrentTrack, removeTrack } from '../lib/musicManager';
 
 export default function Home() {
-  const noCurrentImage = 'data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=='// https://imgur.com/G9damvz.png
   const noQueue = (
     <div className='bg-[#1e2022] w-full p-3 border-2 h-full border-gray-400/30 rounded flex items-center justify-center'>
       <p className='text-center text-gray-200 text-xl select-none'>There is no more queue ;-;</p>
     </div>
   )
-  const [imageCover, setImagerCover] = useState(noCurrentImage)
   const [currentQueue, setcurrentQueue] = useState(noQueue)
   let queue = []
-
-  setInterval(() => {
-    if (!getCurrentTrack().id) return setImagerCover(noCurrentImage)
-    setImagerCover(`https://i.ytimg.com/vi/${getCurrentTrack().id}/hqdefault.jpg`)
-  }, 500);
 
   setInterval(() => {
     if (!getCurrentQueue().length) return setcurrentQueue(noQueue)
@@ -73,7 +66,7 @@ export default function Home() {
           <div className='flex justify-center items-center h-full w-full'>
             <p className='text-2xl text-gray-200 select-none text-center'>There is no music playing ;-;</p>
           </div>
-          <Image id='image' className='rounded' layout='fill' objectFit='cover' alt='image cover' src={imageCover} />
+          <Image id='image' className='rounded' layout='fill' objectFit='cover' alt='image cover' src='data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==' />
         </div>
         <div className='w-full md:w-3/4 h-3/4 flex flex-col'>
           <div className='bg-[#1e2022] text-center z-40 md:text-2xl text-gray-200 border-2 border-gray-400/30 rounded p-2 md:p-4 mb-2 md:mb-5 sticky top-0'>
