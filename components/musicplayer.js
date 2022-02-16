@@ -54,7 +54,7 @@ export default function Musicplayer() {
 
     setInterval(() => {
         if (getCurrentTrack().tracks) {
-            const time = Math.floor(getCurrentPosition() / toMilliseconds(getCurrentTrack().tracks.duration) * 100)
+            const time = Math.floor(getCurrentPosition() / getCurrentTrack().tracks.lengthSeconds * 100)
             setcurrentPosition(time + '%')
         } else {
             setcurrentPosition('0%')
