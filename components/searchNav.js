@@ -1,18 +1,15 @@
 import axios from "axios";
 import { useState } from "react"
 import { addTrack } from "../lib/musicManager";
-
 export default function Search() {
     const [searchResult, setSearchResult] = useState()
 
     async function searchTrack() {
         if (!document.getElementById('search').value) return setSearchResult()
         let result = []
-
-        axios.get(`https://express-1.stevanvincent.repl.co/search/${encodeURIComponent(document.getElementById('search').value)}`)
+        axios.get(`/api/search?q=${encodeURIComponent(document.getElementById('search').value)}`)
             .then(function (response) {
-                const res = response.data.filter(x => !x.liveNow && x.title && x.type === 'video')
-                res.map(x => {
+                response.data.map(x => {
                     result.push(
                         <div key={x.id} onClick={() => [addTrack(x), setSearchResult()]} className="bg-[#1e2429] hover:bg-[#3c4044] cursor-pointer p-3 border-y-2 rounded border-[#09111a] flex gap-x-4 items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 shrink-0 text-gray-200/70 transition duration-300 hover:text-gray-200/100" viewBox="0 0 20 20" fill="currentColor">
@@ -20,7 +17,7 @@ export default function Search() {
                             </svg>
                             <div className="grid px-1">
                                 <h3 className="text-gray-200/75 font-semibold truncate ...">{x.title}</h3>
-                                <p className="truncate ... text-gray-200/40 mr-10">{x.author.name}</p>
+                                <p className="truncate ... text-gray-200/40 mr-10">{x.channel.name}</p>
                             </div>
                         </div>
                     )
