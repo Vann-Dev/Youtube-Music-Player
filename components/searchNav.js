@@ -7,7 +7,6 @@ export default function Search() {
     async function searchTrack() {
         if (!document.getElementById('search').value) return setSearchResult()
         let result = []
-        /** NOTE: YOU MUST CHANGE THIS IF YOU RUN ON PRODUCTION */
         axios.get(`/api/search?q=${encodeURIComponent(document.getElementById('search').value)}`)
             .then(function (response) {
                 response.data.map(x => {
