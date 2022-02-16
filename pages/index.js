@@ -1,3 +1,4 @@
+import { toColonNotation } from 'colon-notation';
 import Head from 'next/head'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -38,7 +39,7 @@ export default function Home() {
               <h1 className='font-semibold text-gray-200/80 truncate ... mr-10'>{x.title}</h1>
               <p className='text-gray-200/60 truncate ... mr-20'>{x.author}</p>
             </div>
-            <p className='text-gray-200/80'>{x.tracks.duration}</p>
+            <p className='text-gray-200/80'>{toColonNotation(x.tracks.duration * 1000)}</p>
           </div>
         </div>
       )
