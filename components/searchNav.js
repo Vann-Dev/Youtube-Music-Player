@@ -9,9 +9,13 @@ export default function Search() {
         if (!document.getElementById('search').value) return setSearchResult()
         let result = []
 
-        searchTrack(encodeURIComponent(document.getElementById('search').value))
+        axios.get(`https://invidious.snopyta.org/api/v1/search?q=${encodeURIComponent(document.getElementById('search').value)}`, {
+            headers: {
+                "User-Agent": "Mozilla/5.0 (Linux; Android 7.0; SM-G930VC Build/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/58.0.3029.83 Mobile Safari/537.36"
+            }
+        })
             .then(function (response) {
-                const res = response.data.filter(x => !x.liveNow && x.title && x.type === 'video')
+                const res = response.data.filter(x => x.duration && x.title && x.type === 'video')
                 res.map(x => {
                     result.push(
                         <div key={x.id} onClick={() => [addTrack(x), setSearchResult()]} className="bg-[#1e2429] hover:bg-[#3c4044] cursor-pointer p-3 border-y-2 rounded border-[#09111a] flex gap-x-4 items-center">
