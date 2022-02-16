@@ -8,9 +8,10 @@ export default function Search() {
     async function searchTrack() {
         if (!document.getElementById('search').value) return setSearchResult()
         let result = []
-        axios.get(`https://express-1.stevanvincent.repl.co/search/${encodeURIComponent(document.getElementById('search').value)}`)
+
+        searchTrack(encodeURIComponent(document.getElementById('search').value))
             .then(function (response) {
-                const res = response.data.filter(x => x.duration && x.title && x.type === 'video')
+                const res = response.data.filter(x => !x.liveNow && x.title && x.type === 'video')
                 res.map(x => {
                     result.push(
                         <div key={x.id} onClick={() => [addTrack(x), setSearchResult()]} className="bg-[#1e2429] hover:bg-[#3c4044] cursor-pointer p-3 border-y-2 rounded border-[#09111a] flex gap-x-4 items-center">
