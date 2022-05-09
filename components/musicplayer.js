@@ -65,8 +65,8 @@ export default function Musicplayer() {
         <>
             <MusicManager />
             <Script src="https://kit.fontawesome.com/c6b3c624ab.js" crossOrigin="anonymous"></Script>
-            <nav className="fixed bottom-0 w-full bg-[#222527] space-y-2">
-                <div id='playingStats' style={{ 'width': currentPosition }} className={`h-[2px] bg-indigo-500`}></div>
+            <nav className="fixed bottom-0 w-full bg-[#222527] space-y-2 border-t-blue-600 border-t-4">
+                <div id='playingStats' className={`h-[2px]`}></div>
                 <div className='flex items-center flex-row w-full md:justify-between gap-5 py-4 px-4 md:px-7 h-16'>
                     <div className='flex gap-7 md:gap-10 text-2xl text-gray-200/80'>
                         <button onClick={back} className=' hover:opacity-75'>
